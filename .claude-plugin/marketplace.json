@@ -1,0 +1,25 @@
+{
+  "name": "claude-power-tools",
+  "owner": {
+    "name": "Ayush Raj",
+    "url": "https://github.com/ayushraj"
+  },
+  "plugins": [
+    {
+      "name": "hidden-skills",
+      "description": "Unlocked ant-only skills and feature-gated agents extracted from Claude Code source — verification, skillify, memory review, and more",
+      "source": "./plugins/hidden-skills",
+      "version": "1.0.0",
+      "category": "productivity",
+      "tags": ["verification", "skillify", "memory", "agents", "hidden", "ant-only"]
+    },
+    {
+      "name": "power-hooks",
+      "description": "Automated hooks for post-commit verification, memory restoration after compaction, and subagent tracking",
+      "source": "./plugins/power-hooks",
+      "version": "1.0.0",
+      "category": "automation",
+      "tags": ["hooks", "verification", "automation", "post-commit"]
+    }
+  ]
+}

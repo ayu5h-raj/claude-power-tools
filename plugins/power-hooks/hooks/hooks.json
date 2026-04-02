@@ -1,0 +1,39 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Bash",
+      "hooks": [
+        {
+          "type": "command",
+          "if": "Bash(git commit*)",
+          "command": "bash -c 'DIFF=$(git diff HEAD~1 --name-only 2>/dev/null); ISSUES=\"\"; for f in $DIFF; do if [ -f \"$f\" ]; then MATCH=$(grep -n -E \"(console\\.log|debugger|print\\(|TODO.*HACK|FIXME)\" \"$f\" 2>/dev/null | head -5); if [ -n \"$MATCH\" ]; then ISSUES=\"$ISSUES\\n$f:\\n$MATCH\\n\"; fi; fi; done; SECRETS=$(git diff HEAD~1 2>/dev/null | grep -E \"(AKIA|sk-|password\\s*=\\s*[\\x27\\\"].+[\\x27\\\"]|API_KEY\\s*=\\s*[\\x27\\\"].+[\\x27\\\"])\" | head -3); if [ -n \"$SECRETS\" ]; then ISSUES=\"$ISSUES\\n[SECRETS DETECTED]:\\n$SECRETS\\n\"; fi; if [ -n \"$ISSUES\" ]; then echo \"Post-commit check found potential issues:\"; echo -e \"$ISSUES\"; else echo \"Post-commit check: clean\"; fi'",
+          "timeout": 10,
+          "statusMessage": "Post-commit verification"
+        }
+      ]
+    }
+  ],
+  "PostCompact": [
+    {
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "Context was compacted. Re-read CLAUDE.md, any active plan files, and auto-memory entries from ~/.claude/projects/ for project-specific memory before continuing.",
+          "statusMessage": "Restoring context after compaction"
+        }
+      ]
+    }
+  ],
+  "SubagentStop": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'mkdir -p ~/.claude/logs && echo \"[$(date +\"%Y-%m-%d %H:%M:%S\")] Subagent completed in $(pwd)\" >> ~/.claude/logs/subagent-completions.log'",
+          "async": true,
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}

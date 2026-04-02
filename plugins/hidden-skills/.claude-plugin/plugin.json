@@ -1,0 +1,21 @@
+{
+  "name": "hidden-skills",
+  "version": "1.0.0",
+  "description": "Unlocked ant-only skills and feature-gated agents extracted from Claude Code source code. Includes adversarial verification, security review, memory consolidation, session-to-skill extraction, and more.",
+  "author": {
+    "name": "Ayush Raj",
+    "url": "https://github.com/ayushraj"
+  },
+  "license": "MIT",
+  "keywords": ["verification", "skillify", "memory", "agents", "productivity", "security", "dream"],
+  "agents": [
+    "./agents/verification-agent.md",
+    "./agents/research-scout.md",
+    "./agents/pr-shepherd.md",
+    "./agents/dependency-auditor.md",
+    "./agents/session-archivist.md",
+    "./agents/security-reviewer.md",
+    "./agents/memory-consolidator.md"
+  ],
+  "skills": "./skills/"
+}

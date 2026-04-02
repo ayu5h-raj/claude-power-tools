@@ -1,0 +1,12 @@
+{
+  "name": "power-hooks",
+  "version": "1.0.0",
+  "description": "Automated hooks for post-commit verification, memory restoration after context compaction, and subagent completion tracking.",
+  "author": {
+    "name": "Ayush Raj",
+    "url": "https://github.com/ayushraj"
+  },
+  "license": "MIT",
+  "keywords": ["hooks", "verification", "automation", "post-commit", "compaction"],
+  "hooks": "./hooks/hooks.json"
+}
